@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Weather</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}"/>
+</head>
+<body class="h-100">
+<div class="card mx-auto col-6 shadow mt-5 mb-5">
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th th:text="'Город'"></th>
+                <th th:text="'Температура'"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${weatherMetaInfoPage.content}">
+                <td th:text="${item.city.title}"/>
+                <td th:text="${item.temperature}"/>
+            </tr>
+            </tbody>
+        </table>
+        <nav th:if="${weatherMetaInfoPage.totalPages > 0}">
+            <ul class="pagination justify-content-center">
+                <li class="page-item" th:each="pageNumber : ${pageNumbers}" th:class="${pageNumber==weatherMetaInfoPage.number + 1} ? 'page-item active' : 'page-item'">
+                    <a class="page-link" th:href="@{/(size=${weatherMetaInfoPage.size}, page=${pageNumber})}" th:text="${pageNumber}"></a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+</body>
+</html>
