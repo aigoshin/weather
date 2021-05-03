@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/api/v1/weather")
 @RestController
-@Api("Weather Controller")
+@Api(tags = "Weather Controller")
 public class WeatherController {
 
     @Autowired
